@@ -1,3 +1,44 @@
 .main-content-wrapper {
-    margin-top: 25vh;
+    margin-top: 15vh;
+
+    .main-content-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        .content-section {
+            width: 350px;
+            height: 250px;
+            margin-left: 30px;
+            margin-right: 30px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            cursor: pointer;
+            display:flex;
+            align-items: flex-end;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 25px;
+            font-family: cursive;
+            color: black;
+        }
+
+        .content-section:hover {
+            opacity: .75;
+        }
+
+        #drinks {
+            background-image: url('../../../assets/coffee_img.png');
+        }
+
+
+        #food {
+            background-image: url('../../../assets/sandwhich_img.png');
+        }
+
+
+        #account {
+            background-image: url('../../../assets/account_img.png');
+        }
+    }
 }
