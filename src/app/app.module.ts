@@ -9,6 +9,9 @@ import { MainContentComponent } from './landing-page/main-content/main-content.c
 import { MenuComponent } from './menu/menu.component';
 import { AccountComponent } from './account/account.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HeaderComponent } from './header/header.component';
+import { DrinkMenuComponent } from './menu/drink-menu/drink-menu.component';
+import { FoodMenuComponent } from './menu/food-menu/food-menu.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { AppRoutingModule } from './app-routing.module';
     FooterComponent,
     MainContentComponent,
     MenuComponent,
-    AccountComponent
+    AccountComponent,
+    HeaderComponent,
+    DrinkMenuComponent,
+    FoodMenuComponent
   ],
   imports: [
     BrowserModule,
