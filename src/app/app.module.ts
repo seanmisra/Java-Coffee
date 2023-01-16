@@ -13,6 +13,8 @@ import { HeaderComponent } from './header/header.component';
 import { DrinkMenuComponent } from './menu/drink-menu/drink-menu.component';
 import { FoodMenuComponent } from './menu/food-menu/food-menu.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
