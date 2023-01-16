@@ -1,0 +1,36 @@
+h2 {
+    font-family: cursive;
+    margin-left: 10px;
+}
+
+.menu-item-wrapper {
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 35px;
+
+
+    .menu-item {
+        height: 200px;
+        width: 300px;
+        border: 1px solid black;
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: center;
+        background-color: rgba(89, 71, 63, .09);
+
+        .menu-item-title {
+            margin-top: 5px;
+            font-weight: bold;
+            font-family: 'Courier New';
+        }
+
+        .menu-item-description {
+            margin-left: 3px;
+            margin-right: 3px;
+        }
+
+        .menu-item-price {
+            font-weight: bold;
+        }
+    }
+}

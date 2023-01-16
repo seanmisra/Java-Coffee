@@ -1,1 +1,19 @@
-{{ menuName | titlecase }} Menu
+<div class="menu-wrapper">
+    <h2>
+        {{ menuName | titlecase }} Menu
+    </h2>
+
+    <div class="menu-item-wrapper" *ngFor="let item of menuItems">
+        <div class="menu-item">
+            <p div class="menu-item-title">{{ item.name }}</p>
+
+            <p class="menu-item-description">
+                {{ item.description }}
+            </p>
+
+            <p class="menu-item-price">
+                {{ item.price | currency}}
+            </p>
+        </div>
+    </div>
+</div>
