@@ -1,6 +1,16 @@
 <div class="form-tabs-wrapper"> 
-    <span class="form-tab active-tab" id="existing-customer-tab">Sign In</span>
-    <span class="form-tab inactive-tab" id="new-customer-tab">Sign Up</span>
+    <span (click)="toggleTab(true)"
+        class="form-tab active-tab"
+        [ngClass]="{'active-tab': existingCustomer, 'inactive-tab': !existingCustomer}"
+        id="existing-customer-tab">
+    Sign In</span>
+
+
+    <span (click)="toggleTab(false)"
+        class="form-tab inactive-tab"
+        [ngClass]="{'active-tab': !existingCustomer, 'inactive-tab': existingCustomer}"
+        id="new-customer-tab">
+    Sign Up</span>
 </div>
 
 <!-- <div class="form-message">
@@ -8,25 +18,27 @@
 </div> -->
 
 <form class="sign-up-form">
-    <!-- <label class='form-label' for='firstName'>First Name </label>
-    <input name='firstName' id='firstName' type='text'>
+    <ng-container *ngIf="!existingCustomer">
+        <label class='form-label' for='firstName'>First Name </label>
+        <input name='firstName' id='firstName' type='text'>
+        <br>
+    
+        <label class='form-label' for='lastName'>Last Name </label>
+        <input name='lasttName' id='lastName' type='text'>
+        <br>
+    </ng-container>
 
-    <br>
-    <label class='form-label' for='lastName'>Last Name </label>
-    <input name='lasttName' id='lastName' type='text'> -->
-
-    <br>
     <label class='form-label' for='email'>Email </label>
     <input name='email' id='email' type='email'>
-
     <br>
+
     <label class='form-label' for='password'>Password </label>
     <input name='password' id='password' type='password'>
 </form>
 
 <div class="button-wrapper">
     <button class="submit-button">
-        Sign In
+        {{ existingCustomer ? 'Sign In' : 'Sign Up' }}
     </button>
 </div>
 

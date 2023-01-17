@@ -9,7 +9,13 @@ export class AccountComponent implements OnInit {
 
   constructor() { }
 
+  existingCustomer = true;
+
   ngOnInit(): void {
+  }
+
+  toggleTab(existingCustomer: boolean) {
+    this.existingCustomer = existingCustomer ? true : false;
   }
 
 }
