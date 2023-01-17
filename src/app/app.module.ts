@@ -14,6 +14,7 @@ import { DrinkMenuComponent } from './menu/drink-menu/drink-menu.component';
 import { FoodMenuComponent } from './menu/food-menu/food-menu.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MyAccountComponent } from './account/my-account/my-account.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +26,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AccountComponent,
     HeaderComponent,
     DrinkMenuComponent,
-    FoodMenuComponent
+    FoodMenuComponent,
+    MyAccountComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
