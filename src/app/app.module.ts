@@ -15,6 +15,8 @@ import { FoodMenuComponent } from './menu/food-menu/food-menu.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyAccountComponent } from './account/my-account/my-account.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MenuService } from './menu/menu.service';
 
 @NgModule({
   declarations: [
@@ -34,9 +36,10 @@ import { MyAccountComponent } from './account/my-account/my-account.component';
     NgbModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [MenuService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
