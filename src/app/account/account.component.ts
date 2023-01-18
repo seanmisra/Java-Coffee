@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbDropdownMenu } from '@ng-bootstrap/ng-bootstrap';
+import { first } from 'rxjs';
+import { UserAccount } from '../model/userAccount.model';
+import { AccountService } from './account.service';
 
 @Component({
   selector: 'app-account',
@@ -12,7 +16,9 @@ export class AccountComponent implements OnInit {
   existingCustomer = true;
   submissionForm: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder) { }
+  constructor(private router: Router,
+    private fb: FormBuilder,
+    private accountService: AccountService) { }
 
   ngOnInit(): void {
 
@@ -37,12 +43,47 @@ export class AccountComponent implements OnInit {
     }
   }
 
+  // handles both new accounts and existing accounts
   handleLogin() {
     console.log('this.submissionForm')
     console.log(this.submissionForm);
     // handle username/password validation with service, in addition add CanActivate guard
     if (this.submissionForm.valid) {
-      this.router.navigate(['/my-account']);      
+
+      const firstName = this.submissionForm.value.firstName;
+      const lastName = this.submissionForm.value.lastName;
+      const email = this.submissionForm.value.email;
+      const password = this.submissionForm.value.password;
+
+      if (this.existingCustomer) {
+        let loginSuccess: boolean;
+        
+        this.accountService.validateUser(email, password).subscribe(result => {
+          loginSuccess = result;
+
+          if (loginSuccess) {
+            this.router.navigate(['/my-account']);      
+          } else {
+            alert("Password is incorrect or account does not exist!");
+          }
+        })
+      } else {
+        const userAccount = new UserAccount();
+        userAccount.firstName = firstName
+        userAccount.lastName = lastName;
+        userAccount.email = email;
+        userAccount.password = password;
+
+        this.accountService.createAccount(userAccount).subscribe(result => {
+          alert(result.message);
+
+          if (!result.message.includes('ERROR')) {
+            setTimeout(() => {
+              this.router.navigate(['/my-account']);      
+            }, 2500);
+          }
+        })
+      }
     }
   }
 
