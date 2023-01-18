@@ -18,6 +18,9 @@ import { MyAccountComponent } from './account/my-account/my-account.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuService } from './menu/menu.service';
 import { AccountService } from './account/account.service';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +41,11 @@ import { AccountService } from './account/account.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    })
   ],
   providers: [MenuService, AccountService],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import { NgbDropdownMenu } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs';
 import { UserAccount } from '../model/userAccount.model';
 import { AccountService } from './account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-account',
@@ -18,6 +19,7 @@ export class AccountComponent implements OnInit {
 
   constructor(private router: Router,
     private fb: FormBuilder,
+    private toastService: ToastrService,
     private accountService: AccountService) { }
 
   ngOnInit(): void {
@@ -31,6 +33,7 @@ export class AccountComponent implements OnInit {
   }
 
   toggleTab(existingCustomer: boolean) {
+    this.submissionForm.reset();
     this.existingCustomer = existingCustomer ? true : false;
 
     const firstName = this.submissionForm.get('firstName');
@@ -69,7 +72,9 @@ export class AccountComponent implements OnInit {
           if (loginSuccess) {
             this.router.navigate(['/my-account']);      
           } else {
-            alert("Password is incorrect or account does not exist!");
+            this.toastService.error("Password is incorrect or account does not exist!", null, {
+              timeOut: 10000
+            });
           }
         })
       } else {
@@ -80,12 +85,13 @@ export class AccountComponent implements OnInit {
         userAccount.password = password;
 
         this.accountService.createAccount(userAccount).subscribe(result => {
-          alert(result.message);
-
           if (!result.message.includes('ERROR')) {
+            this.toastService.success(result.message);
             setTimeout(() => {
               this.router.navigate(['/my-account']);      
             }, 2500);
+          } else {
+            this.toastService.error(result.message);
           }
         })
       }
