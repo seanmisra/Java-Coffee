@@ -1,4 +1,17 @@
 .my-account-wrapper {
     margin-left: 5px;
     margin-top: 5px;
+
+    #log-out-wrapper {
+        margin-top: 15px;
+        #log-out {
+            color: #0000EE;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        #log-out:hover {
+            opacity: .7
+        }
+    }
 }

@@ -1,5 +1,5 @@
 export class LoginObject {
-    email: String;
-    password: String;
-    attempt: number;
+    email: string;
+    password?: string;
+    attempt?: number;
 }

@@ -1,16 +1,22 @@
 <div class="my-account-wrapper">
     <label>First Name: </label> 
-    <span> Joe </span>
+    <span> {{ firstName }} </span>
     <br>
     
     <label>Last Name: </label>
-    <span> Tester </span>
+    <span> {{ lastName }} </span>
     <br>
 
     <label>Email: </label>
-    <span> joetester5233@gmail.com </span>
+    <span> {{ email }} </span>
     <br>
 
     <label>Loyalty Points: </label>
-    <span> 345 </span>
+    <span> {{ loyaltyPoints }} </span>
+    <br>
+
+    <div id="log-out-wrapper">
+        <span id="log-out" (click)="signOut()" >Log Out</span>
+    </div> 
+
 </div>

@@ -6,6 +6,7 @@ import { first } from 'rxjs';
 import { UserAccount } from '../model/userAccount.model';
 import { AccountService } from './account.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-account',
@@ -19,8 +20,13 @@ export class AccountComponent implements OnInit {
 
   constructor(private router: Router,
     private fb: FormBuilder,
+    private authService: AuthService,
     private toastService: ToastrService,
-    private accountService: AccountService) { }
+    private accountService: AccountService) { 
+      if (authService.loggedIn.value) {
+        this.router.navigate(['/my-account']);
+      }
+    }
 
   ngOnInit(): void {
 
@@ -55,6 +61,9 @@ export class AccountComponent implements OnInit {
 
   // handles both new accounts and existing accounts
   handleLogin() {
+    this.authService.loggedIn.next(false);
+    this.authService.userEmail.next("");
+
     // handle username/password validation with service, in addition add CanActivate guard
     if (this.submissionForm.valid) {
 
@@ -70,6 +79,8 @@ export class AccountComponent implements OnInit {
           loginSuccess = result;
 
           if (loginSuccess) {
+            this.authService.loggedIn.next(true);
+            this.authService.userEmail.next(email);
             this.router.navigate(['/my-account']);      
           } else {
             this.toastService.error("Password is incorrect or account does not exist!", null, {
@@ -86,6 +97,8 @@ export class AccountComponent implements OnInit {
 
         this.accountService.createAccount(userAccount).subscribe(result => {
           if (!result.message.includes('ERROR')) {
+            this.authService.loggedIn.next(true);
+            this.authService.userEmail.next(email);
             this.toastService.success(result.message);
             setTimeout(() => {
               this.router.navigate(['/my-account']);      

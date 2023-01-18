@@ -20,6 +20,8 @@ import { MenuService } from './menu/menu.service';
 import { AccountService } from './account/account.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth-guard.guard';
 
 
 @NgModule({
@@ -47,7 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       positionClass: 'toast-bottom-right',
     })
   ],
-  providers: [MenuService, AccountService],
+  providers: [MenuService, AccountService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

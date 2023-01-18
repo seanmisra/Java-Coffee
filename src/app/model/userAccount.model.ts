@@ -1,7 +1,7 @@
 export class UserAccount {
-    firstName: String;
-    lastName: String;
-    password: String;
-    email: String;
+    firstName: string;
+    lastName: string;
+    password: string;
+    email: string;
     loyaltyPoints?: number
 }

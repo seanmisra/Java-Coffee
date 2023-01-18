@@ -18,13 +18,17 @@ export class AccountService {
     return this.http.post<UserResponse>(this.rootUrl + 'createAccount', userAccount);
   }
 
-  validateUser(email: String, password: String, loginAttempt = 1): Observable<boolean> {
+  validateUser(email: string, password: string, loginAttempt = 1): Observable<boolean> {
     const loginObj = new LoginObject();
     loginObj.attempt = loginAttempt;
     loginObj.email = email;
     loginObj.password = password;
 
     return this.http.post<boolean>(this.rootUrl + 'validateUser', loginObj);
+  }
+
+  loadAccount (loginAttempt: LoginObject): Observable<UserAccount> {
+    return this.http.post<UserAccount>(this.rootUrl + 'loadAccount', loginAttempt);
   }
 
 
