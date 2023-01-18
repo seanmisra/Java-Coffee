@@ -33,20 +33,25 @@ export class AccountComponent implements OnInit {
   toggleTab(existingCustomer: boolean) {
     this.existingCustomer = existingCustomer ? true : false;
 
+    const firstName = this.submissionForm.get('firstName');
+    const lastName = this.submissionForm.get('lastName')
+
     if (existingCustomer) {
-      this.submissionForm.get('firstName')?.clearValidators();
-      this.submissionForm.get('lastName')?.clearValidators();
+      firstName.clearValidators();
+      lastName.clearValidators();
+      firstName.setErrors(null);
+      lastName.setErrors(null);
+      this.submissionForm.updateValueAndValidity();
     } else {
-      this.submissionForm.get('firstName')?.addValidators([Validators.required, Validators.max(30)]);
-      this.submissionForm.get('lastName')?.addValidators([Validators.required, Validators.max(30)]);
+      this.submissionForm.get('firstName').addValidators([Validators.required, Validators.max(30)]);
+      this.submissionForm.get('lastName').addValidators([Validators.required, Validators.max(30)]);
+      this.submissionForm.updateValueAndValidity();
 
     }
   }
 
   // handles both new accounts and existing accounts
   handleLogin() {
-    console.log('this.submissionForm')
-    console.log(this.submissionForm);
     // handle username/password validation with service, in addition add CanActivate guard
     if (this.submissionForm.valid) {
 
